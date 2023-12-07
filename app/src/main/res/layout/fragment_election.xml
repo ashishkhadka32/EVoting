@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ElectionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/admin"/>
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Select Elections"
+        android:textColor="@color/start_color"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+        <Spinner
+            android:layout_marginTop="120dp"
+            android:layout_width="match_parent"
+            android:id="@+id/edtElection"
+            android:layout_height="60dp"
+            android:entries="@array/election_spinner"
+            android:spinnerMode="dropdown">
+        </Spinner>
+
+    </LinearLayout>
+
+</ScrollView>

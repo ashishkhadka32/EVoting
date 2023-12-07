@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">EVoting</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="we_will_send_you_one_time_otp_on_this_given_mobile_number">We will send you one time OTP on this given mobile number</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="_977">+977</string>
+    <string name="please_enter_the_otp_send_to_you">Please enter the OTP send to you</string>
+    <string-array name="spinner_items">
+        <item>Select Nominees</item>
+        <item>President</item>
+        <item>Vice-President</item>
+    </string-array>
+
+    <string-array name="election_spinner">
+        <item>Select Election</item>
+        <item>President 2080</item>
+        <item>Vice-President 2080</item>
+    </string-array>
+
+    <string-array name="election_result">
+        <item>Select Election Result</item>
+        <item>President 2080 Result</item>
+        <item>Vice-President 2080 Result</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
