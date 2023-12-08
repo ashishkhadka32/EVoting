@@ -59,13 +59,17 @@ public class AddElection extends AppCompatActivity {
         startDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar today = Calendar.getInstance();
+                int year = today.get(Calendar.YEAR);
+                int month = today.get(Calendar.MONTH);
+                int day = today.get(Calendar.DAY_OF_MONTH);
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AddElection.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         Calendar selectedDate = Calendar.getInstance();
                         selectedDate.set(year, month, dayOfMonth);
 
-                        Calendar today = Calendar.getInstance();
                         if (selectedDate.compareTo(today) >= 0) {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                             startDateEditText.setText(dateFormat.format(selectedDate.getTime()));
@@ -123,7 +127,7 @@ public class AddElection extends AppCompatActivity {
             private void showConfirmationDialog() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AddElection.this);
                 builder.setTitle("Confirmation");
-                builder.setMessage("Are you sure you want to add this user?");
+                builder.setMessage("Are you sure you want to add this election?");
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -270,17 +274,17 @@ public class AddElection extends AppCompatActivity {
     private void setElectionDateAddedFlag() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("election_date_adds", true);
+        editor.putBoolean("election_dates_added", true);
         editor.apply();
     }
 
     private void storeElectionDetails(String electionType) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("election_type_", electionType);
+        editor.putString("election_types_", electionType);
         // Store the first letter of the election type
         if (!electionType.isEmpty()) {
-            editor.putString("election_type_add_first_", String.valueOf(electionType.charAt(0)));
+            editor.putString("election_type_added_first", String.valueOf(electionType.charAt(0)));
         }
         editor.apply();
     }

@@ -128,17 +128,20 @@ public class AddUser extends AppCompatActivity {
                 }
                 else if(edtUid.getText().toString().equals(""))
                 {
-                    edtUid.setError("Please enter Uid");
+                    Toast.makeText(AddUser.this, "Please enter Uid", Toast.LENGTH_SHORT).show();
                 } else if (edtUsername.getText().toString().equals("")) {
-                    edtUsername.setError("Please enter username");
-                } else if (edtContact.getText().toString().equals("") || edtContact.length()!=10 || !edtContact.getText().toString().startsWith("98")) {
-                    edtContact.setError("Phone number must be of 10 digits and must start with 98");
+                    Toast.makeText(AddUser.this, "Please enter username", Toast.LENGTH_SHORT).show();
+                }else if (!isValidUserName(edtUsername.getText().toString())) {
+                    Toast.makeText(AddUser.this, "Username name cannot contain numeric characters", Toast.LENGTH_SHORT).show();
+                }
+                else if (edtContact.getText().toString().equals("") || edtContact.length()!=10 || !edtContact.getText().toString().startsWith("98")) {
+                    Toast.makeText(AddUser.this, "Phone number must be of 10 digits and must start with 98", Toast.LENGTH_SHORT).show();
                 } else if (edtAddress.getText().toString().equals("")) {
-                    edtAddress.setError("Please enter address");
+                    Toast.makeText(AddUser.this, "Please enter address", Toast.LENGTH_SHORT).show();
                 } else if (passwordText.equals("") || !isValidPassword(passwordText)) {
-                    edtPassword.setError("Invalid password format. It must contain at least 8 characters, including both letters and numbers.");
+                    Toast.makeText(AddUser.this, "Invalid password format. It must contain at least 8 characters, including both letters and numbers.", Toast.LENGTH_SHORT).show();
                 } else if (edtDob.getText().toString().equals("")) {
-                    edtDob.setError("Pleaser enter your DOB");
+                    Toast.makeText(AddUser.this, "Please enter your DOB", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     // Calculate age based on date of birth
@@ -155,15 +158,16 @@ public class AddUser extends AppCompatActivity {
                         RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
                         String selectedValue = selectedRadioButton.getText().toString();
                         uploaddatatodb(selectedValue);
+                        showConfirmationDialog();
                     } else {
                         Toast.makeText(AddUser.this, "Please select an option", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
-                showConfirmationDialog();
+
             }
             private int calculateAge(String dob) {
-                // Parse the date of birth and calculate the age
+
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 try {
                     Date birthDate = sdf.parse(dob);
@@ -173,7 +177,6 @@ public class AddUser extends AppCompatActivity {
                     Calendar currentCalendar = Calendar.getInstance();
                     int age = currentCalendar.get(Calendar.YEAR) - dobCalendar.get(Calendar.YEAR);
 
-                    // Adjust age if the birthdate has not occurred yet this year
                     if (currentCalendar.get(Calendar.DAY_OF_YEAR) < dobCalendar.get(Calendar.DAY_OF_YEAR)) {
                         age--;
                     }
@@ -181,7 +184,7 @@ public class AddUser extends AppCompatActivity {
                     return age;
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    return -1; // Return -1 in case of an error
+                    return -1;
                 }
             }
 
@@ -193,7 +196,7 @@ public class AddUser extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Proceed with data upload
+
                         int selectedRadioButtonId = edtRadio.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
                             RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
@@ -215,7 +218,9 @@ public class AddUser extends AppCompatActivity {
                 builder.create().show();
             }
 
-
+            private boolean isValidUserName(String name) {
+                return !name.matches(".*\\d.*");
+            }
 
             private boolean isValidUID(String uid) {
                 // Define the regular expression pattern for UID validation

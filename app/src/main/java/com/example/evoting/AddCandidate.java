@@ -97,12 +97,10 @@ public class AddCandidate extends AppCompatActivity {
                 if (!isElectionDateAdd()) {
                     Toast.makeText(AddCandidate.this, "An election date must be added first", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Check if the election type and year match before adding the candidate
                     String storedFirstLetter = getStoredElectionFirstLetter();
                     String selectedFirstLetter = getSelectedElectionFirstLetter();
 
                     if (selectedFirstLetter.equals(storedFirstLetter)) {
-                        // Check conditions for adding a candidate
                         if (!isValidCandidateName(edtName.getText().toString())) {
                             Toast.makeText(AddCandidate.this, "Candidate name cannot contain numeric characters", Toast.LENGTH_SHORT).show();
                         } else if (edtName.getText().toString().isEmpty()) {
@@ -157,12 +155,12 @@ public class AddCandidate extends AppCompatActivity {
     }
     private boolean isElectionDateAdd() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getBoolean("election_date_", false);
+        return preferences.getBoolean("election_dates_added", false);
     }
 
     private String getStoredElectionFirstLetter() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getString("election_type_add_first_", "");
+        return preferences.getString("election_type_added_first", "");
     }
 
     private String getSelectedElectionFirstLetter() {

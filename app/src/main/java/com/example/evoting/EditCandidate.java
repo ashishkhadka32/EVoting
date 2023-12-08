@@ -105,14 +105,14 @@ public class EditCandidate extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             selectedImageUri = data.getData();
 
-            // Load the selected image into the ImageView using Glide
+
             Glide.with(this)
                     .asBitmap()
                     .load(selectedImageUri)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(img);
             try {
-                // Decode the selected image URI into a bitmap
+
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -127,19 +127,19 @@ public class EditCandidate extends AppCompatActivity {
         String party = edtParty.getText().toString();
         String nominees = edtNominees.getSelectedItem().toString();
 
-        // Additional Validation Checks
+
         if (name.isEmpty() || address.isEmpty() || contact.isEmpty() || contact.length() != 10 || party.isEmpty() || nominees.equals("Select Nominees")) {
             Toast.makeText(EditCandidate.this, "Please fill in all details and select valid nominees", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validate Contact starts with "98"
+
         if (!contact.startsWith("98")) {
             Toast.makeText(EditCandidate.this, "Contact must start with '98'", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validate Candidate name does not contain numeric value
+
         if (name.matches(".*\\d.*")) {
             Toast.makeText(EditCandidate.this, "Candidate name cannot contain numeric value", Toast.LENGTH_SHORT).show();
             return;
@@ -147,7 +147,6 @@ public class EditCandidate extends AppCompatActivity {
 
 
         if (bitmap!=null) {
-//            bitmap = resizeBitmap(bitmap, 800, 600);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] bytesofimage = byteArrayOutputStream.toByteArray();
             final String base64Img = Base64.encodeToString(bytesofimage, Base64.DEFAULT);

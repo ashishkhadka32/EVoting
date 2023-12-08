@@ -2,13 +2,14 @@ package com.example.evoting.Url;
 
 public class UrlPath
 {
-    public static String Main_Url = "http://192.168.0.104/E-voting/";
+//    public static String Main_Url = "http://192.168.0.104/E-voting/";
 //    public static String Main_Url = "http://192.168.16.61/E-voting/";
+public static String Main_Url = "http://192.168.40.235/E-voting/";
     public static String UserLogin_Url = Main_Url+"Login.php";
     public static String AddCandidate_Url = Main_Url+"AddCandidate.php";
     public static String AddElection_Url = Main_Url+"AddElection.php";
     public static String AddUser_Url = Main_Url+"AddUser.php";
-    public static String AdminLogin_Url = Main_Url+"AdminLogin.php";
+//    public static String AdminLogin_Url = Main_Url+"AdminLogin.php";
     public static String displayCandidate_Url = Main_Url+"displayCandidate.php";
     public static String displayUser_Url = Main_Url+"displayUser.php";
     public static String DeleteUser_Url = Main_Url+"DeleteUser.php";

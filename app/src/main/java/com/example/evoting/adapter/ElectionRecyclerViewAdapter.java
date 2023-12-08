@@ -129,6 +129,12 @@ public class ElectionRecyclerViewAdapter extends RecyclerView.Adapter<ElectionRe
                         mData.remove(adapterPosition);
                         notifyItemRemoved(adapterPosition);
                         Toast.makeText(mContext, "Election deleted successfully", Toast.LENGTH_SHORT).show();
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("election_dates_added", false);
+                        editor.putString("election_types_", "");
+                        editor.apply();
+                        
                     } else {
                         Toast.makeText(mContext, "Failed to delete election", Toast.LENGTH_SHORT).show();
                     }
@@ -157,7 +163,7 @@ public class ElectionRecyclerViewAdapter extends RecyclerView.Adapter<ElectionRe
 
             // Replace with your actual keys
             String electionTypeKey = "election_type_" + id;
-            String firstLetterKey = "election_type_add_first_" + id;
+            String firstLetterKey = "election_type_added_first" + id;
 
             editor.remove(electionTypeKey);
             editor.remove(firstLetterKey);
